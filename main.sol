@@ -18,4 +18,32 @@ contract greatestnum{
   _;
  }
 
+  modifier costs(uint price) {
+      if (msg.value >= price) {
+         _;
+      }
+  }
+  
+ function set(uint _a, uint _b, uint _c, uint _d) public onlyOwner{
+ a = _a;
+ b = _b;
+ c = _c;
+ d = _d;
+ }
+
+ function get() public view onlyOwner returns(uint){
+        if ((a > b) && (a > c) && (a > d)){
+        return(a);
+        }
+        else if ((b >c ) && (b > d) && (b > a)){
+            return(b);
+        }
+        else if ((c > d) && (c > a) && (c > b)){
+            return(c);
+        }
+        else {
+            return(d);
+        }
+    }
+
 }
